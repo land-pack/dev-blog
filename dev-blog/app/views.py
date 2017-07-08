@@ -6,9 +6,9 @@ from app import oid
 from .forms import LoginForm
 from .models import User
 
-@app.route("/test")
-def test():
-    return render_template("index.html")
+@app.route("/home")
+def home():
+    return render_template("home.html")
 
 @app.route("/about")
 def about():
@@ -16,11 +16,15 @@ def about():
 
 @app.route("/contact")
 def contact():
-    return render_template("_base.html")
+    return render_template("contact.html")
 
 @app.route("/work")
 def work():
-    return render_template("_base.html")
+    return render_template("work.html")
+
+@app.route("/single")
+def single():
+    return render_template("single.html")
 
 @app.before_request
 def before_request():
