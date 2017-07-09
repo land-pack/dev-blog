@@ -15,12 +15,25 @@ class RegexConverter(BaseConverter):
 
 app.url_map.converters['regex'] = RegexConverter
 
+
+@app.context_processor
+def inject_user():
+	return dict(user_info=g.user_info)
+
+@app.before_request
+def query_user_info():
+	g.user_info = {
+		"username":"Frank AK",
+		"job":"Python Developer ~"
+	}
+
 @app.route("/home")
 def home():
-    form = EmailForm()
-    if form.validate_on_submit():
-        print 'somethinf'
-    return render_template("home.html", form=form)
+
+	form = EmailForm()
+	if form.validate_on_submit():
+		print 'somethinf'
+	return render_template("home.html", form=form)
 
 @app.route("/about")
 def about():
