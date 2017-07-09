@@ -14,7 +14,7 @@ lm.init_app(app)
 lm.login_view = 'login'
 oid = OpenID(app, os.path.join(basedir, 'tmp'))
 db = SQLAlchemy(app)
-
+app.debug=True
 """
 If you are wondering why the import statement is at the end and not at 
 the beginning of the script as it is always done, the reason is to avoid 
