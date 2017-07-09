@@ -45,7 +45,7 @@
                                 
                                 <!-- Post Image Start -->
                                 <div class="post-image margin-top-40 margin-bottom-40">
-                                   <img src="images/blog/1.jpg" alt="">
+                                   <img src="{{ url_for('static', filename='images/blog/1.jpg') }}" alt="">
                                    <p>Image source from <a href="#" target="_blank">Link</a></p>                                      
                                   </div>
                                   <!-- Post Image End -->
@@ -59,7 +59,7 @@
                                  <div class="video-box margin-top-40 margin-bottom-40">
                                   <div class="video-tutorial">
                                    <a class="video-popup" href="https://www.youtube.com/watch?v=O2Bsw3lrhvs" title="Video Tutorial">
-                                   <img src="images/blog/4.jpg" alt="">
+                                   <img src="{{ url_for('static', filename='images/blog/4.jpg') }}" alt="">
                                    </a>                           
                                   </div>
                                  <p>Integrate video on magnific popup for fast page load.</p>
@@ -131,20 +131,20 @@
                                   <div class="row margin-top-40 margin-bottom-40">
                                  
                                     <div class="col-md-4 col-sm-6 col-xs-12">
-                                      <a href="images/blog/7.jpg" class="image-popup" title="image Title">
-                                      <img src="images/blog/7.jpg" class="img-responsive" alt="">
+                                      <a href="{{ url_for('static', filename='images/blog/7.jpg') }}" class="image-popup" title="image Title">
+                                      <img src="{{ url_for('static', filename='images/blog/7.jpg') }}" class="img-responsive" alt="">
                                      </a>
                                     </div>
                     
                                     <div class="col-md-4 col-sm-6 col-xs-12">
-                                      <a href="images/blog/5.jpg" class="image-popup" title="image Title">
-                                      <img src="images/blog/5.jpg" class="img-responsive" alt="">
+                                      <a href="{{ url_for('static', filename='images/blog/5.jpg') }}" class="image-popup" title="image Title">
+                                      <img src="{{ url_for('static', filename='images/blog/5.jpg') }}" class="img-responsive" alt="">
                                      </a>
                                     </div>
                     
                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                     <a href="images/blog/6.jpg" class="image-popup" title="image Title">
-                                     <img src="images/blog/6.jpg" class="img-responsive" alt="">
+                                     <a href="{{ url_for('static', filename='images/blog/6.jpg') }}" class="image-popup" title="image Title">
+                                     <img src="{{ url_for('static', filename='images/blog/6.jpg') }}" class="img-responsive" alt="">
                                     </a>
                                    </div>
                                 
@@ -218,7 +218,7 @@
                                   <div class="about-author margin-top-70 margin-bottom-50">
                                     
                                     <div class="picture">
-                                      <img src="images/blog/author.png" class="img-responsive" alt="">
+                                      <img src="{{ url_for('static', filename='images/blog/author.png') }}" class="img-responsive" alt="">
                                      </div>
                                    
                                     <div class="c-padding">
@@ -237,15 +237,15 @@
                                      <div class="row">
                                  
                                     <div class="col-md-4 col-sm-6 col-xs-12">
-                                      <a href="single.html"><p>Make mailchimp singup form working with ajax using jquery plugin</p></a>
+                                      <a href="{{ url_for('single') }}"><p>Make mailchimp singup form working with ajax using jquery plugin</p></a>
                                      </div>
                     
                                     <div class="col-md-4 col-sm-6 col-xs-12">
-                                      <a href="single.html"><p>How to design elegant e-mail newsletter in html for wish christmas to your subscribers?</p></a>
+                                      <a href="{{ url_for('single') }}"><p>How to design elegant e-mail newsletter in html for wish christmas to your subscribers?</p></a>
                                      </div>
                     
                                     <div class="col-md-4 col-sm-6 col-xs-12">
-                                      <a href="single.html"><p>How to customize a wordpress theme entirely from scratch using a child theme?</p></a>
+                                      <a href="{{ url_for('single') }}"><p>How to customize a wordpress theme entirely from scratch using a child theme?</p></a>
                                      </div>
                                     
                                     </div>
