@@ -20,6 +20,11 @@ app.url_map.converters['regex'] = RegexConverter
 def inject_user():
 	return dict(user_info=g.user_info)
 
+@app.context_processor
+def inject_email_form():
+    form = EmailForm(request.form)
+    return dict(form=form)
+
 @app.before_request
 def query_user_info():
 	g.user_info = {
@@ -27,19 +32,12 @@ def query_user_info():
 		"job":"Python Developer ~"
 	}
 
-@app.route("/home")
+@app.route("/home", methods=['GET', 'POST'])
 def home():
-
-	form = EmailForm()
-	if form.validate_on_submit():
-		print 'somethinf'
-	return render_template("home.html", form=form)
+	return render_template("home.html")
 
 @app.route("/about")
 def about():
-    form = EmailForm()
-    if form.validate_on_submit():
-        print 'somethinf'
     greeting = 'Hi, I am'
     username = 'Frank AK'
     describer = """
@@ -54,28 +52,19 @@ def about():
                 "Linux"
             ]
 
-    return render_template("about.html", form=form, greeting=greeting, username=username, describer=describer, services=services)
+    return render_template("about.html", greeting=greeting, username=username, describer=describer, services=services)
 
 @app.route("/contact")
 def contact():
-    form = EmailForm()
-    if form.validate_on_submit():
-        print 'somethinf'
-    return render_template("contact.html", form=form)
+    return render_template("contact.html")
 
 @app.route("/work")
 def work():
-    form = EmailForm()
-    if form.validate_on_submit():
-        print 'somethinf'
-    return render_template("work.html", form=form)
+    return render_template("work.html")
 
 @app.route("/single")
 def single():
-    form = EmailForm()
-    if form.validate_on_submit():
-        print 'somethinf'
-    return render_template("single.html", form=form)
+    return render_template("single.html")
 
 
 @app.route("/mv")
@@ -115,7 +104,7 @@ def after_login(resp):
         remember_me = session['remember_me']
         session.pop('remember_me', None)
     login_user(user, remember = remember_me)
-    return redirect(request.args.get('next') or url_for('index'))
+    return redirect(the_request.args.get('next') or url_for('index'))
 
 
 @app.route("/")
