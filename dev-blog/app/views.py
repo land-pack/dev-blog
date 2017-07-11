@@ -102,8 +102,16 @@ def contact():
         "title":"""<h1>I am Looking for a <span class="main-color">
         online presence</span>?</h1>"""
     }
+    subjects = [
+        "Website Design & Development",
+        "Python Web",
+        "Spider with Scrapy",
+        "I Want to General Talk",
+        "Other"
+
+    ]
     return render_template("contact.html", contact_data=contact_data, 
-        recommends=recommends, intro=intro)
+        recommends=recommends, intro=intro, subjects=subjects)
 
 @app.route("/work")
 def work():

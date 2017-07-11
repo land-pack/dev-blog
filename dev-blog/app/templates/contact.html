@@ -114,34 +114,31 @@
         </div>
                    </div>
 
-                  <div class="col-sm-12">
+      <div class="col-sm-12">
         <select id="subject" class="form-group form-control">
-         <option value="" selected disabled>Subject</option>
-         <option>Website Design & Development</option>
-         <option>Wordpress Development</option>
-           <option>Search Engine Optimization</option>
-                       <option>Mobile Website</option>
-         <option>I Want to General Talk</option>
-                       <option>Other</option>
-         </select>
-                   </div>
-
-                  <div class="col-sm-12">
-          <div class="textarea-message form-group">
-            <textarea id="message" class="textarea-message form-control" placeholder="Your Message" rows="5"></textarea>
+           <option value="" selected disabled>Subject</option>
+            {% for subject in subjects %}
+              <option>{{ subject }}</option>
+            {% endfor %}
+        </select>
       </div>
-                 </div>
+
+      <div class="col-sm-12">
+        <div class="textarea-message form-group">
+          <textarea id="message" class="textarea-message form-control" placeholder="Your Message" rows="5"></textarea>
+        </div>
+      </div>
  
  
-              <div class="text-center">      
-            <button type="submit" class="load-more-button">Send</button>
-             </div>
+      <div class="text-center">      
+        <button type="submit" class="load-more-button">Send</button>
+      </div>
      
-               </form>
-              </div>
-            </div>
-           </div>
-           <!-- Contact Me End -->
+    </form>
+  </div>
+</div>
+</div>
+<!-- Contact Me End -->
               
        
        </div>
