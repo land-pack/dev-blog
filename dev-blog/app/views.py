@@ -6,7 +6,7 @@ from app import lm
 from app import oid
 from app import admin
 from .forms import LoginForm, EmailForm
-from .models import User, RecommendInfo, AboutInfo
+from .models import User, RecommendInfo, AboutInfo, ContactInfo, ContectSubjects
 from werkzeug.routing import BaseConverter
 
 
@@ -49,44 +49,17 @@ def home():
 def about():
     about_query = AboutInfo.query.first(
     ) or {'greeting': 'Hey, I am ~', 'username': 'X ~', 'describer': 'something ~'}
-    services = about_query.services.split('|') if not isinstance(about_query,dict) else [
+    services = about_query.services.split('|') if not isinstance(about_query, dict) else [
         'I can drink ~', 'I can eating ~']
     return render_template("about.html", about_data=about_query, services=services)
 
 
 @app.route("/contact")
 def contact():
-    contact_data = {
-        "contact_info": {
-            "phone": "17666116392",
-            "email": "landpack@sina.com",
-            "leisure": "Mon - Fri 09:00 - 18:00"
-        }
-    }
-    intro = {
-        "content": """<p>I am in the website field since 2004 Lorem ipsum dolor 
-                            sit amet, consectetur adipiscing elit. Proin at quam at orci 
-                            commodo hendrerit vitae nec eros. Vestibulum neque est, imperdiet 
-                            nec tortor nec, tempor semper metus. <b>I am a developer</b>, et 
-                            accumsan nisi. Duis laoreet pretium ultricies. Curabitur rhoncus 
-                            auctor nunc congue sodales. Sed posuere nisi ipsum, eget dignissim 
-                            nunc dapibus eget. Aenean elementum sollicitudin sapien ut sapien 
-                            fermentum aliquet mollis. Curabitur ac quam orci sodales quam ut tempor.</p>
-                        """,
-        "title": """<h1>I am Looking for a <span class="main-color">
-        online presence</span>?</h1>"""
-    }
-    subjects = [
-        "Website Design & Development",
-        "Python Web",
-        "Spider with Scrapy",
-        "I Want to General Talk",
-        "Other"
-
-    ]
-    recommends = RecommendInfo.query.all()
-    return render_template("contact.html", contact_data=contact_data,
-                           recommends=recommends, intro=intro, subjects=subjects)
+    subjects = ContectSubjects.query.all()
+    d = ContactInfo.query.first() or default_data
+    reco = RecommendInfo.query.all()
+    return render_template("contact.html", d=d, recommends=reco, subjects=subjects)
 
 
 @app.route("/work")
@@ -120,7 +93,7 @@ def before_request():
 def load_user(id):
     return User.query.get(int(id))
 
-
+#o
 @oid.after_login
 def after_login(resp):
     if resp.email is None or resp.email == '':

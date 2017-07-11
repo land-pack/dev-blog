@@ -1,5 +1,6 @@
 from flask_admin.contrib.sqla import ModelView
 from app import db, admin
+from datetime import datetime
 
 
 class User(db.Model):
@@ -43,7 +44,7 @@ class RecommendInfo(db.Model):
     name = db.Column(db.String(16))
     com = db.Column(db.String(32))
     desc = db.Column(db.String(1024))
-    timestamp = db.Column(db.DateTime)
+    timestamp = db.Column(db.DateTime, default=datetime.now())
     
 
     def __repr__(self):
@@ -61,6 +62,28 @@ class AboutInfo(db.Model):
     def __repr__(self):
         return '<About %r>' % (self.username)
 
+class ContactInfo(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    phone = db.Column(db.String(16))
+    email = db.Column(db.String(32))
+    leisure = db.Column(db.String(1024))
+    title = db.Column(db.String(128))
+    content = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, default=datetime.now())
+    
+    def __repr__(self):
+        return '<Contact %r>' % (self.phone)
+
+
+class ContectSubjects(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    subject = db.Column(db.String(64))
+
+    def __repr__(self):
+        return '<Subject %r>' % (self.id)
+
 
 admin.add_view(ModelView(RecommendInfo, db.session))
 admin.add_view(ModelView(AboutInfo, db.session))
+admin.add_view(ModelView(ContactInfo, db.session))
+admin.add_view(ModelView(ContectSubjects, db.session))

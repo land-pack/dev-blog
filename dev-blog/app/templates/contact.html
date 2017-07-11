@@ -11,9 +11,9 @@
               <div class="col-md-12 blog-post">
                 <!-- Intro Start -->
                 <div class="post-title margin-bottom-10">
-                  {{ intro.title | safe}}
+                  {{ d.title | safe}}
                 </div>
-                  {{ intro.content |safe}}
+                  {{ d.content |safe}}
                   <!-- Intro End -->    
                   <!-- Testimonials Start -->
                   <div class="post-title margin-top-50">
@@ -23,7 +23,7 @@
                 {% for recommend in recommends %}     
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="testimonial-content">
-                      {{ recommend.desc | safe}}
+                      <p>{{ recommend.desc | safe}}</p>
                     </div>     
                     <div class="testimonial-client-info">
                       <div class="testimonial-client client-thumb">
@@ -46,19 +46,19 @@
     <div class="col-md-4 col-sm-4">
       <div class="contact-us-detail">  
         <i class="icon-screen-smartphone color-6"></i>
-        <p><a href="{{ contact_data.contact_info.phone}}">{{ contact_data.contact_info.phone }}</a></p>
+        <p><a href="{{ d.phone}}">{{ d.phone }}</a></p>
       </div>
     </div>
     <div class="col-md-4 col-sm-4">
       <div class="contact-us-detail">
         <i class="icon-envelope-open color-5"></i>
-        <p><a href="{{ contact_data.contact_info.email}}">{{ contact_data.contact_info.email}}</a></p>
+        <p><a href="{{ d.email}}">{{ d.email}}</a></p>
       </div>
     </div>
     <div class="col-md-4 col-sm-4">
       <div class="contact-us-detail">
         <i class="icon-clock color-3"></i>
-        <p>{{ contact_data.contact_info.leisure}}</p>
+        <p>{{ d.leisure}}</p>
       </div>
     </div>
   </div>
