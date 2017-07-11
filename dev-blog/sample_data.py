@@ -68,5 +68,20 @@ for rec in recommend_list:
     r = models.RecommendInfo(name=rec['name'], com=rec['com'], desc=rec['desc'])
     db.session.add(r)
 
+# add about data
+greeting = 'Hey, I am ~'
+username = 'Frank AK'
+describer = 'something ~'
+services = 'I can drink ~ | I can eating ~'
+jobs = 'Python Developer'
+
+ab = models.AboutInfo(
+    username = username,
+    greeting = greeting,
+    describer = describer,
+    services = services,
+    jobs = jobs
+    )
+db.session.add(ab)
 
 db.session.commit()

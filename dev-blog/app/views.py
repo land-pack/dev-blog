@@ -47,10 +47,8 @@ def home():
 
 @app.route("/about")
 def about():
-    about_query = AboutInfo.query.first(
-    ) or {'greeting': 'Hey, I am ~', 'username': 'X ~', 'describer': 'something ~'}
-    services = about_query.services.split('|') if not isinstance(about_query, dict) else [
-        'I can drink ~', 'I can eating ~']
+    about_query = AboutInfo.query.first()
+    services = about_query.services.split('|')
     return render_template("about.html", about_data=about_query, services=services)
 
 

@@ -56,8 +56,8 @@ class AboutInfo(db.Model):
     greeting = db.Column(db.String(32))
     describer = db.Column(db.String(1024))
     services = db.Column(db.String(1024))
-    timestamp = db.Column(db.DateTime)
     jobs = db.Column(db.String(16))
+    timestamp = db.Column(db.DateTime)
     
     def __repr__(self):
         return '<About %r>' % (self.username)
