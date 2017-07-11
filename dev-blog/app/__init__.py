@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_openid import OpenID
@@ -14,6 +15,7 @@ lm.init_app(app)
 lm.login_view = 'login'
 oid = OpenID(app, os.path.join(basedir, 'tmp'))
 db = SQLAlchemy(app)
+admin = Admin(app, name='microblog', template_mode='bootstrap3')
 app.debug=True
 """
 If you are wondering why the import statement is at the end and not at 
@@ -23,3 +25,4 @@ needs to import the app variable defined in this script. Putting the
 import at the end avoids the circular import error.
 """
 from app import views, models
+

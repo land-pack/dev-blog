@@ -20,7 +20,7 @@
                 
                 <!-- My Intro Start -->
                 <div class="post-title margin-bottom-30">
-                    <h1>{{ greeting }} <span class="main-color">{{ username }}</span></h1>
+                    <h1>{{ about_data.greeting }} <span class="main-color">{{ about_data.username }}</span></h1>
                     
                     <ul class="knowledge">
                       <li class="bg-color-1">Web Designer</li>
@@ -32,7 +32,7 @@
                    <!-- My Intro End -->
                     
                     
-                {{ describer | safe}}
+                {{ about_data.describer | safe}}
                  
                  
                  <!-- Video Start -->
@@ -56,7 +56,7 @@
                    
                   <div class="list list-style-2 margin-top-30">
                     <ul>
-                    {% for service in services %}
+                    {% for service in about_data.services.split('|') %}
                       <li>{{ service }} </li>
                     {% endfor %}
                      </ul>

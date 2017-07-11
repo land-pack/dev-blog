@@ -1,4 +1,5 @@
-from app import db
+from flask_admin.contrib.sqla import ModelView
+from app import db, admin
 
 
 class User(db.Model):
@@ -36,3 +37,29 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % (self.body)
+
+class RecommendInfo(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(16))
+    com = db.Column(db.String(32))
+    desc = db.Column(db.String(1024))
+    timestamp = db.Column(db.DateTime)
+    
+
+    def __repr__(self):
+        return '<Post %r>' % (self.name)
+
+class AboutInfo(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(16))
+    greeting = db.Column(db.String(32))
+    describer = db.Column(db.String(1024))
+    services = db.Column(db.String(1024))
+    timestamp = db.Column(db.DateTime)
+    
+    def __repr__(self):
+        return '<About %r>' % (self.username)
+
+
+admin.add_view(ModelView(RecommendInfo, db.session))
+admin.add_view(ModelView(AboutInfo, db.session))

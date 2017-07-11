@@ -4,9 +4,11 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app import app
 from app import lm
 from app import oid
+from app import admin
 from .forms import LoginForm, EmailForm
-from .models import User
+from .models import User, RecommendInfo, AboutInfo
 from werkzeug.routing import BaseConverter
+
 
 class RegexConverter(BaseConverter):
 	def __init__(self, url_map, *items):
@@ -39,21 +41,8 @@ def home():
 
 @app.route("/about")
 def about():
-    greeting = 'Hi, I am'
-    username = 'Frank AK'
-    describer = """
-         <p>I am in the website field since 2004 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at quam at orci commodo hendrerit vitae nec eros. Vestibulum neque est, imperdiet nec tortor nec, tempor semper metus. <b>I am a developer</b>, et accumsan nisi. Duis laoreet pretium ultricies. Curabitur rhoncus auctor nunc congue sodales. Sed posuere nisi ipsum, eget dignissim nunc dapibus eget. Aenean elementum sollicitudin sapien ut sapien fermentum aliquet mollis. Curabitur ac quam orci sodales quam ut tempor. suspendisse, gravida in augue in, interdum <b><a href="work.html" data-toggle="tooltip" data-placement="top" title="Check out my work.">Work</a></b> bibendum dui. Suspendisse sit amet justo sit amet diam fringilla commodo. Praesent ac magna at metus malesuada tincidunt non ac arcu. Nunc gravida eu felis vel elementum. Vestibulum sodales quam ut tempor tempor Donec sollicitudin imperdiet nec tortor nec, tempor semper metus..</p>
-    """
-    services = [
-                "Website Design",
-                "Website Development",
-                "Python Game Server",
-                "Nginx",
-                "Openresty",
-                "Linux"
-            ]
-
-    return render_template("about.html", greeting=greeting, username=username, describer=describer, services=services)
+    about_query = AboutInfo.query.first()
+    return render_template("about.html", about_data=about_query)
 
 @app.route("/contact")
 def contact():
@@ -64,31 +53,6 @@ def contact():
             "leisure": "Mon - Fri 09:00 - 18:00"
         }
     }
-
-    recommend_1 = {
-        "desc":"""<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Proin at quam at orci commodo hendrerit vitae nec eros. Vestibulum neque est, 
-        imperdiet nec tortor nec, tempor semper metus.</p>""",
-        "com":"Rolling LTD, Founder",
-        "name":"John"
-    }
-
-    recommend_2 = {
-        "desc":"""<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Proin at quam at orci commodo hendrerit vitae nec eros. Vestibulum neque est, 
-        imperdiet nec tortor nec, tempor semper metus.</p>""",
-        "com":"SkyGuard LTD, Founder",
-        "name":"Frank T"
-    }
-
-    recommend_3 = {
-        "desc":"""<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Proin at quam at orci commodo hendrerit vitae nec eros. Vestibulum neque est, 
-        imperdiet nec tortor nec, tempor semper metus.</p>""",
-        "com":"500.com LTD, Founder",
-        "name":"Jack"
-    }
-    recommends = [recommend_1, recommend_2, recommend_3]
     intro = {
         "content": """<p>I am in the website field since 2004 Lorem ipsum dolor 
                             sit amet, consectetur adipiscing elit. Proin at quam at orci 
@@ -110,6 +74,7 @@ def contact():
         "Other"
 
     ]
+    recommends = RecommendInfo.query.all()
     return render_template("contact.html", contact_data=contact_data, 
         recommends=recommends, intro=intro, subjects=subjects)
 
